@@ -1,7 +1,7 @@
 // Reusable terminal-style block character progress bar
 export function BlockBar({ value, max = 100, color = 'coral' }) {
   const WIDTH = 20
-  const filled = Math.round((value / max) * WIDTH)
+  const filled = Math.min(WIDTH, Math.max(0, Math.round((value / max) * WIDTH)))
   const empty  = WIDTH - filled
   const fg = color === 'heat'
     ? 'coral'  // simulate thermal: red->green->yellow gradient via chars

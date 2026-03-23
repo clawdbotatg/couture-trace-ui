@@ -4,7 +4,7 @@ import { BlockBar } from './ProgressBars'
 function TempoTrail({ state }) {
   const { tempo } = state
   const W = 16
-  const filled = Math.round((tempo.current / tempo.peak) * W)
+  const filled = Math.min(W, Math.max(0, Math.round((tempo.current / tempo.peak) * W)))
   const bar = '█'.repeat(filled) + '░'.repeat(W - filled)
   return (
     <div className="tempo-trail">
