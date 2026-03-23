@@ -1,11 +1,11 @@
 .keyboard-bar {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
-  padding: 6px 8px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
+  padding: 4px 6px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 1px;
 }
 
 .kbd-item {
@@ -15,21 +15,37 @@
   font-size: 11px;
 }
 
-.kbd-key {
-  background: var(--teal);
-  color: var(--bg);
-  padding: 1px 6px;
-  border-radius: 2px;
+kbd {
   font-family: var(--font);
+}
+
+.kbd-key {
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  padding: 0px 5px;
+  border-radius: 2px;
   font-size: 10px;
   font-weight: 700;
+  background: transparent;
+  min-width: 20px;
+  text-align: center;
+  display: inline-block;
 }
 
 .kbd-action {
   color: var(--text-dim);
 }
 
-.kbd-status {
+.kbd-status-badge {
+  border: 1px solid var(--teal);
   color: var(--teal);
+  padding: 0px 6px;
+  border-radius: 2px;
+  font-size: 10px;
   font-weight: 700;
+  background: transparent;
+}
+
+.kbd-status-item {
+  margin-left: auto;
 }

@@ -1,7 +1,7 @@
 .couture-header {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   height: 100%;
 }
 
@@ -9,50 +9,36 @@
   display: flex;
   align-items: baseline;
   gap: 6px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1;
 }
 
-.couture-brand { font-size: 18px; }
+.couture-brand  { font-size: 16px; }
+.couture-trans  { color: var(--coral); letter-spacing: 0.15em; }
+.couture-vm     { color: var(--white); letter-spacing: 0.08em; }
 
-.couture-trans {
-  color: var(--coral);
-  letter-spacing: 0.15em;
-}
-
-.couture-vm {
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.couture-meta { font-size: 12px; }
+.couture-meta   { font-size: 11px; }
 
 .couture-state-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.couture-next {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .couture-mood {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
+  font-size: 11px;
   flex-wrap: wrap;
 }
 
 .couture-vars {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 12px;
+  gap: 3px;
+  font-size: 11px;
   flex-wrap: wrap;
+  margin-top: auto;
 }

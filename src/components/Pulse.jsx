@@ -13,13 +13,10 @@ function Pulse({ state }) {
       <div className="pulse-row">
         <span className="label">progress</span>
         <div className="pulse-bar-wrap">
-          <div className="progress-bar" style={{ width: '100%' }}>
-            <div
-              className="progress-fill progress-fill-coral"
-              style={{ width: `${state.progress}%` }}
-            />
+          <div className="progress-bar">
+            <div className="progress-fill progress-fill-coral" style={{ width: `${state.progress}%` }} />
           </div>
-          <span className="value-yellow">{Math.round(state.progress)}%</span>
+          <span className="value-bright" style={{ minWidth: '32px', textAlign: 'right' }}>{Math.round(state.progress)}%</span>
         </div>
       </div>
 
@@ -31,13 +28,10 @@ function Pulse({ state }) {
       <div className="pulse-row">
         <span className="label">memory heat</span>
         <div className="pulse-bar-wrap">
-          <div className="progress-bar" style={{ width: '100%' }}>
-            <div
-              className="progress-fill progress-fill-teal"
-              style={{ width: `${state.pressure}%` }}
-            />
+          <div className="progress-bar">
+            <div className="progress-fill progress-fill-heat" style={{ width: `${state.pressure}%` }} />
           </div>
-          <span className="value-teal">{state.pressure}%</span>
+          <span className="value-bright" style={{ minWidth: '32px', textAlign: 'right' }}>{state.pressure}%</span>
         </div>
       </div>
     </div>

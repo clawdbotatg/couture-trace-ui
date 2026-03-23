@@ -6,9 +6,9 @@ function StageMonitor({ state }) {
       <div className="panel-title">Stage Monitor</div>
 
       <div className="stage-badges">
-        <span className="badge badge-coral">{state.status}</span>
-        <span className="badge badge-amber">{state.theme}</span>
-        <span className="badge badge-teal">{state.stepMs}ms</span>
+        <span className="badge badge-bg-coral">{state.status}</span>
+        <span className="badge badge-bg-pink">{state.theme}</span>
+        <span className="badge badge-bg-teal">{state.stepMs}ms</span>
       </div>
 
       <div className="stage-details">
@@ -18,7 +18,7 @@ function StageMonitor({ state }) {
         </div>
         <div className="stage-line">
           <span className="label">progress</span>
-          <span className="value-yellow">{Math.round(state.progress)}%</span>
+          <span className="value-bright">{Math.round(state.progress)}%</span>
           <span className="sep">—</span>
           <span className="label">throughput</span>
           <span className="value-teal">{state.throughput} steps/s</span>
@@ -34,7 +34,7 @@ function StageMonitor({ state }) {
           <span className="label">proof</span>
           <span className="value-coral">{state.proof}</span>
           <span className="sep">—</span>
-          <span className="value-dim" style={{ fontSize: '11px' }}>press p to run replay {'->'} prove</span>
+          <span className="value-dim">press p to run replay {'->'} prove</span>
         </div>
       </div>
     </div>

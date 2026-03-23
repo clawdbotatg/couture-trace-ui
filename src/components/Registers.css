@@ -1,13 +1,12 @@
 .registers {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 100%;
+  gap: 6px;
 }
 
 .reg-badges {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   flex-wrap: wrap;
 }
 

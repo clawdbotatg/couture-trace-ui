@@ -1,15 +1,15 @@
 import './KeyboardBar.css'
 
 const SHORTCUTS = [
-  { key: 'q', action: 'quit' },
+  { key: 'q',     action: 'quit' },
   { key: 'space', action: 'pause' },
-  { key: 'n', action: 'step' },
-  { key: '1-4', action: 'view' },
-  { key: 'p', action: 'attest' },
-  { key: 'v', action: 'verify' },
-  { key: '[/]', action: 'budget' },
-  { key: 't', action: 'theme' },
-  { key: '+/-', action: 'tempo' },
+  { key: 'n',     action: 'step' },
+  { key: '1-4',   action: 'view' },
+  { key: 'p',     action: 'attest' },
+  { key: 'v',     action: 'verify' },
+  { key: '[/]',   action: 'budget' },
+  { key: 't',     action: 'theme' },
+  { key: '+/-',   action: 'tempo' },
 ]
 
 function KeyboardBar({ status }) {
@@ -21,9 +21,9 @@ function KeyboardBar({ status }) {
           <span className="kbd-action">{action}</span>
         </span>
       ))}
-      <span className="kbd-item">
+      <span className="kbd-item kbd-status-item">
         <span className="kbd-action">status</span>
-        <span className="kbd-status">{status}</span>
+        <kbd className="kbd-status-badge">{status}</kbd>
       </span>
     </div>
   )
