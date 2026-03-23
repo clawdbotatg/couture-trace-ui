@@ -1,0 +1,12 @@
+.signal-drift {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.signal-canvas {
+  width: 100%;
+  border-radius: 2px;
+  image-rendering: pixelated;
+}

@@ -1,0 +1,22 @@
+.memory-story {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.story-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.story-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.value-dim { color: var(--text-dim); }

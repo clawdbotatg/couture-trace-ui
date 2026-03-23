@@ -1,0 +1,35 @@
+.keyboard-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.kbd-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.kbd-key {
+  background: var(--teal);
+  color: var(--bg);
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.kbd-action {
+  color: var(--text-dim);
+}
+
+.kbd-status {
+  color: var(--teal);
+  font-weight: 700;
+}

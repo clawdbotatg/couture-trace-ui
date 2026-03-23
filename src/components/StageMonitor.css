@@ -1,0 +1,26 @@
+.stage-monitor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.stage-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.stage-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stage-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
