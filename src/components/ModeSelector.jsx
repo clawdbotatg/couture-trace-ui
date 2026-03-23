@@ -3,7 +3,7 @@ import './ModeSelector.css'
 function ModeSelector({ active, onChange, modes }) {
   return (
     <div className="mode-selector">
-      <span className="mode-label">Modes</span>
+      <span className="mode-label">MODES</span>
       <div className="mode-tabs">
         {modes.map((mode) => {
           const isActive = mode === active
@@ -14,8 +14,7 @@ function ModeSelector({ active, onChange, modes }) {
               className={`mode-tab ${isActive ? 'active' : ''}`}
               onClick={() => onChange(mode)}
             >
-              <span className="mode-key">{key}</span>
-              <span className="mode-name">:{mode.split(':')[1]}</span>
+              {mode}
             </button>
           )
         })}

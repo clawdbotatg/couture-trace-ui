@@ -1,14 +1,16 @@
 .signal-drift {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   height: 100%;
+  min-height: 80px;
 }
 
 .signal-canvas-wrap {
   flex: 1;
-  min-height: 0;
+  min-height: 60px;
   position: relative;
+  height: 80px;
 }
 
 .signal-canvas {

@@ -13,6 +13,7 @@ import HotCells from './components/HotCells'
 import MemoryStory from './components/MemoryStory'
 import Registers from './components/Registers'
 import KeyboardBar from './components/KeyboardBar'
+import TempoTrail from './components/TempoTrail'
 
 const MODES = ['1:Runway', '2:Atelier', '3:Backtrace', '4:Attestation']
 
@@ -20,14 +21,14 @@ const INIT = {
   pc: 6, acc: 2, zero: false, carry: false, halt: false, sp: 5,
   progress: 34, throughput: 28, status: 'RUNNING', theme: 'Velvet',
   stepMs: 30, memoryCells: 5, traceEvents: 25, proof: 'READY',
-  nextInstruction: 'L1 LOAD 1', layersActive: 3,
-  latestInstruction: { num: 25, layer: 'L1', op: 'STORE', operand: 2, pcFrom: 10, pcTo: 11, accFrom: 0, accTo: 1 },
+  nextInstruction: 'L2 STORE 1', layersActive: 3,
   mood: 'lifting values into the spotlight', copy: 'stitching a fresh write into memory',
   viewer: 'Atelier', spotlight: 'latest write hit cell 00',
   hottest: 'cell 02 with 4 writes', pressure: 70,
   texture: 'address history rendered straight from hull-backed memory',
   registers: { pc: 6, acc: 2, sp: 5 },
   flags: { zero: false, carry: false, halt: false },
+  latestInstruction: { num: 25, layer: 'L1', op: 'STORE', operand: 2, pcFrom: 10, pcTo: 11, accFrom: 0, accTo: 1 },
   memory: [
     { addr: '00', value: 3, heat: 6, writes: 4 },
     { addr: '01', value: 3, heat: 2, writes: 3 },
@@ -36,13 +37,13 @@ const INIT = {
     { addr: '04', value: 7, heat: 1, writes: 0 },
   ],
   trace: [
-    { num: 25, layer: 'L0', op: 'STORE', operand: 2, pcFrom: 5, pcTo: 6, accFrom: 2, accTo: 2 },
-    { num: 24, layer: 'L0', op: 'ADDM', operand: 1, pcFrom: 4, pcTo: 5, accFrom: 1, accTo: 2 },
-    { num: 23, layer: 'L0', op: 'LOAD',  operand: 0, pcFrom: 3, pcTo: 4, accFrom: -6, accTo: 1 },
-    { num: 22, layer: 'L0', op: 'JZ',    operand: 14, pcFrom: 2, pcTo: 3, accFrom: -6, accTo: -6 },
-    { num: 21, layer: 'L0', op: 'SUBM',  operand: 4, pcFrom: 1, pcTo: 2, accFrom: 1, accTo: -6 },
-    { num: 20, layer: 'L0', op: 'LOAD',  operand: 3, pcFrom: 0, pcTo: 1, accFrom: 1, accTo: 1 },
-    { num: 19, layer: 'L2', op: 'JMP',   operand: 0, pcFrom: 13, pcTo: 0, accFrom: 1, accTo: 1 },
+    { num: 25, layer: 'L1', op: 'STORE', operand: 2, pcFrom: 10, pcTo: 11, accFrom: 0, accTo: 1 },
+    { num: 24, layer: 'L2', op: 'STORE', operand: 3, pcFrom: 9, pcTo: 10, accFrom: 1, accTo: 0 },
+    { num: 23, layer: 'L1', op: 'LOAD',  operand: 3, pcFrom: 8, pcTo: 9, accFrom: 0, accTo: 1 },
+    { num: 22, layer: 'L0', op: 'JZ',    operand: 14, pcFrom: 7, pcTo: 8, accFrom: -6, accTo: -6 },
+    { num: 21, layer: 'L0', op: 'SUBM',  operand: 4, pcFrom: 6, pcTo: 7, accFrom: 1, accTo: -6 },
+    { num: 20, layer: 'L0', op: 'LOAD',  operand: 3, pcFrom: 5, pcTo: 6, accFrom: 1, accTo: 1 },
+    { num: 19, layer: 'L2', op: 'JMP',   operand: 0, pcFrom: 13, pcTo: 5, accFrom: 1, accTo: 1 },
   ],
   signalDrift: {
     acc: [-4, -8, -12, -16, -12, -8, -4, 0, 2, 4, 6, 8, 10, 8, 6, 4, 2, 4, 6, 8],
@@ -101,48 +102,70 @@ export default function App() {
     return () => clearInterval(timerRef.current)
   }, [])
 
-  const modeNum = activeMode.split(':')[0]
-  const viewer  = modeNum === '1' ? 'Runway' : modeNum === '2' ? 'Atelier' : modeNum === '3' ? 'Backtrace' : 'Attestation'
-  const st      = { ...vm, viewer }
+  const modeNum  = activeMode.split(':')[0]
+  const viewer   = modeNum === '1' ? 'Runway' : modeNum === '2' ? 'Atelier' : modeNum === '3' ? 'Backtrace' : 'Attestation'
+  const headerState = { ...vm, viewer }
 
   return (
-    <div className="app" data-mode={modeNum}>
-      <div className="dashboard">
-
-        {/* ROW 1: header + stage */}
-        <div className="row-top">
-          <div className="col-left panel"><CoutureTrace state={st} /></div>
-          <div className="col-right panel"><StageMonitor state={vm} /></div>
+    <div className="terminal-window">
+      {/* Title bar */}
+      <div className="titlebar">
+        <div className="traffic-lights">
+          <div className="traffic-light red" />
+          <div className="traffic-light yellow" />
+          <div className="traffic-light green" />
         </div>
+        <div className="titlebar-title">couture-trace — transformer vm</div>
+        <div className="titlebar-dots" />
+      </div>
 
-        {/* ROW 2: modes */}
-        <div className="row-modes panel"><ModeSelector active={activeMode} onChange={setActiveMode} modes={MODES} /></div>
+      {/* Terminal body */}
+      <div className="terminal-body">
+        <div className="app" data-mode={modeNum}>
+          <div className="dashboard">
 
-        {/* ROW 3+4: main two-column area (flex: 1) */}
-        <div className="row-main">
-          {/* LEFT COLUMN */}
-          <div className="main-left">
-            <div className="panel lead-panel"><LeadInstruction state={st} /></div>
-            <div className="panel signal-panel"><SignalDrift state={vm} /></div>
-            <div className="panel memory-panel"><MemoryDressingRoom state={vm} /></div>
-            <div className="panel hotcells-panel"><HotCells state={vm} /></div>
-          </div>
+            {/* ROW 1: header + stage */}
+            <div className="row1">
+              <div className="row1-left  panel"><CoutureTrace state={headerState} /></div>
+              <div className="row1-right panel"><StageMonitor state={vm} /></div>
+            </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="main-right">
-            <div className="panel"><Pulse state={vm} /></div>
-            <div className="panel story-panel"><MemoryStory state={vm} /></div>
-            <div className="panel registers-panel"><Registers state={vm} /></div>
-            <div className="panel layer-panel"><LayerSpotlight state={vm} /></div>
+            {/* ROW 2: modes */}
+            <div className="row2 panel">
+              <ModeSelector active={activeMode} onChange={setActiveMode} modes={MODES} />
+            </div>
+
+            {/* ROW 3: lead + right column */}
+            <div className="row3">
+              <div className="row3-left  panel"><LeadInstruction state={headerState} /></div>
+              <div className="row3-right">
+                <div className="panel"><Pulse state={vm} /></div>
+                <div className="panel story-panel"><MemoryStory state={vm} /></div>
+              </div>
+            </div>
+
+            {/* ROW 4: signal/memory + registers/layer/tempo */}
+            <div className="row4">
+              <div className="row4-left">
+                <div className="panel signal-panel"><SignalDrift state={vm} /></div>
+                <div className="panel memory-panel"><MemoryDressingRoom state={vm} /></div>
+                <div className="panel hotcells-panel"><HotCells state={vm} /></div>
+              </div>
+              <div className="row4-right">
+                <div className="panel registers-panel"><Registers state={vm} /></div>
+                <div className="panel layer-panel"><LayerSpotlight state={vm} /></div>
+                <div className="panel tempo-panel"><TempoTrail state={vm} /></div>
+              </div>
+            </div>
+
+            {/* ROW 5: live trace */}
+            <div className="row5 panel"><LiveTrace state={vm} /></div>
+
+            {/* ROW 6: keyboard */}
+            <div className="row6 panel"><KeyboardBar status={vm.status} /></div>
+
           </div>
         </div>
-
-        {/* ROW 5: trace (full width) */}
-        <div className="row-trace panel"><LiveTrace state={vm} /></div>
-
-        {/* ROW 6: keyboard bar */}
-        <div className="row-kb panel"><KeyboardBar status={vm.status} /></div>
-
       </div>
     </div>
   )

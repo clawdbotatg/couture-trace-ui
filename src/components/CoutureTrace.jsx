@@ -1,8 +1,6 @@
 import './Couture.css'
 
 function CoutureTrace({ state }) {
-  const tagClass = state.viewer === 'Atelier' ? 'badge-teal' : state.viewer === 'Runway' ? 'badge-coral' : 'badge-amber'
-
   return (
     <div className="couture-header">
       <div className="couture-title">
@@ -18,14 +16,14 @@ function CoutureTrace({ state }) {
       </div>
 
       <div className="couture-state-row">
-        <span className={`badge ${tagClass}`}>{state.viewer.toUpperCase()}</span>
+        <span className="rv-box">{state.viewer.toUpperCase()}</span>
         <span className="label">next</span>
         <span className="value-bright">{state.nextInstruction}</span>
       </div>
 
       <div className="couture-mood">
         <span className="label">mood</span>
-        <span className="value-salmon value-italic">{state.mood}</span>
+        <span className="value-salmon">{state.mood}</span>
         <span className="sep-bullet">·</span>
         <span className="value-bright">{state.layersActive} layers active</span>
       </div>

@@ -8,7 +8,7 @@ function LeadInstruction({ state }) {
 
       <div className="lead-row">
         <span className="label">next cue</span>
-        <span className="value-bright" style={{ fontSize: '14px', fontWeight: 700 }}>{state.nextInstruction}</span>
+        <span className="value-bright">{state.nextInstruction}</span>
       </div>
       <div className="lead-row">
         <span className="label">viewer</span>
@@ -17,7 +17,7 @@ function LeadInstruction({ state }) {
       <div className="lead-row">
         <span className="label">latest</span>
         <span className="value-coral">#{latestInstruction.num}</span>
-        <span className="value-yellow">{latestInstruction.layer}</span>
+        <span className="value-amber">{latestInstruction.layer}</span>
         <span className="value-bright">{latestInstruction.op}</span>
         <span className="value-bright">{latestInstruction.operand}</span>
         <span className="value-dim">pc {latestInstruction.pcFrom}→{latestInstruction.pcTo}</span>
@@ -25,7 +25,7 @@ function LeadInstruction({ state }) {
       </div>
       <div className="lead-row">
         <span className="label">copy</span>
-        <span className="value-amber" style={{ fontStyle: 'italic' }}>{state.copy}</span>
+        <span className="value-amber">{state.copy}</span>
       </div>
     </div>
   )

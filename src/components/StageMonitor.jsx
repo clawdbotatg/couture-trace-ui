@@ -6,9 +6,9 @@ function StageMonitor({ state }) {
       <div className="panel-title">Stage Monitor</div>
 
       <div className="stage-badges">
-        <span className="badge badge-bg-coral">{state.status}</span>
-        <span className="badge badge-bg-pink">{state.theme}</span>
-        <span className="badge badge-bg-teal">{state.stepMs}ms</span>
+        <span className="badge badge-coral">{state.status}</span>
+        <span className="badge badge-pink">{state.theme}</span>
+        <span className="badge badge-teal">{state.stepMs}ms</span>
       </div>
 
       <div className="stage-details">

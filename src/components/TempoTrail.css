@@ -1,23 +1,22 @@
 .tempo-trail {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 100%;
+  gap: 4px;
 }
 
-.tempo-metrics {
+.tempo-rows {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .tempo-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  gap: 6px;
+  font-size: 11px;
 }
 
-.tempo-spark {
-  margin-top: auto;
+.tempo-bar-row {
+  margin-top: 2px;
 }

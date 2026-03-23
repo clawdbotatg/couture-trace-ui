@@ -42,3 +42,14 @@
   flex-wrap: wrap;
   margin-top: auto;
 }
+
+/* Reverse-video box — authentic TUI selected/highlighted state */
+.rv-box {
+  background: var(--text);
+  color: var(--bg);
+  padding: 0px 5px;
+  font-weight: 700;
+  font-size: 10px;
+  display: inline-block;
+  letter-spacing: 0.04em;
+}
